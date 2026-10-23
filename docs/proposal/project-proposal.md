@@ -5,7 +5,7 @@
 **Educational program:** Software Engineering  
 **Team:** Timur Bizinskiy (SE-2412) — Mobile Development; Arlan Tulegenov (SE-2429) — Backend Development  
 **Academic supervisor:** Zhibek Sarsenova, Senior Lecturer  
-**Document status:** Draft v0.1 — pending team and supervisor review  
+**Document status:** Draft v0.2 — updated after the consistency review of 23 October 2026; pending supervisor review  
 
 ## 1. Project Overview
 
@@ -33,8 +33,8 @@ To design, implement, and evaluate a cross-platform system that supports amateur
 
 1. **Investigate user needs and existing solutions:** collect feedback from potential players and organizers, review relevant literature, and compare current tennis-related platforms.
 2. **Specify and design the system:** define verifiable functional and non-functional requirements; design the client–server architecture, core data entities, API contracts, and mobile user flows.
-3. **Develop the tournament workflow:** implement user profiles, tournament creation and registration, singles participation, doubles team registration/formation, and match scheduling for an agreed initial competition system.
-4. **Develop and assess the rating mechanism:** implement a selected internal rating method (Elo or Glicko-2), explore its conversion into a clearly labelled NTRP-inspired displayed level, and evaluate matchmaking and rating behaviour using defined metrics.
+3. **Develop the tournament workflow:** implement user profiles, tournament creation and registration, singles participation, doubles team registration/formation, and match scheduling for the Swiss-style system, selected as the first competition system.
+4. **Develop and assess the rating mechanism:** implement the selected internal rating method (Glicko-2, with Elo as a fallback and comparison baseline), explore its conversion into a clearly labelled NTRP-inspired displayed level, and evaluate matchmaking and rating behaviour using defined metrics.
 5. **Integrate and verify the application:** connect the Flutter client with the FastAPI backend and carry out functional, integration, usability, and algorithmic testing.
 
 ## 6. Proposed Solution and Technical Approach
@@ -42,31 +42,34 @@ To design, implement, and evaluate a cross-platform system that supports amateur
 - **Mobile client:** Flutter / Dart; player and organizer interfaces, navigation, client-side validation, API integration, and error handling.
 - **Backend:** Python / FastAPI in a modular monolithic architecture; authentication, tournament lifecycle, registrations, match and team formation, results, and rating calculations.
 - **Communication:** REST/JSON with a documented OpenAPI contract.
-- **Data storage:** a relational database, with PostgreSQL currently under evaluation; optional local mobile caching is also under evaluation.
-- **Rating:** an internal Elo or Glicko-2 score; the public-facing NTRP-inspired category will be derived through a conversion approach that must be justified and tested, not presented as an official USTA NTRP rating.
+- **Data storage:** PostgreSQL as the relational database (selected); an optional offline cache on the phone with Drift (a "could have" feature). Session tokens are kept in the phone's secure storage.
+- **Rating:** an internal Glicko-2 score (selected; plain Elo is kept as a fallback and as a comparison baseline); the public-facing NTRP-inspired category will be derived through a conversion approach that must be justified and tested, not presented as an official USTA NTRP rating.
 
-Final technology choices will be supported by the separate Technology Comparison document.
+The technology choices are justified in the technology comparison (`docs/comparisons/technology-alternatives.md`).
 
 ## 7. Project Scope
 
 ### 7.1 Core Scope (planned first working release)
 
-- Account registration, login, and basic player profiles.
+The core scope corresponds to the **Must** requirements in `docs/requirements/requirement-priorities-and-acceptance-criteria.md`. Should items (for example match history, provisional-rating markers, availability and distance filters, and in-app next-match information) are targeted for the first release if time allows.
+
+- Account registration with privacy-notice consent, login, sign-out, account deletion, and basic player profiles.
 - Initial self-assessment of playing level, clearly distinguished from the calculated rating.
 - Tournament creation, publishing, registration windows, and participant management.
 - **Singles and Doubles** as participation formats.
 - Doubles registration with an existing partner (subject to both players' confirmation) or individual registration for automatic partner formation before tournament start.
-- Generation and presentation of matches for **one initially selected competition system**; the team will confirm which system is delivered first during design.
-- Match result submission, confirmation, and history.
+- Generation and presentation of matches for the **Swiss-style system**, selected as the first competition system.
+- Match result submission by a player, confirmation or dispute by the opponent, and dispute resolution by the organizer.
 - Internal rating updates after confirmed results, with a user-friendly displayed level.
+- Rating-based opponent and partner search by level.
 - Basic organizer and player screens, including loading, empty, and error states.
 
 ### 7.2 Planned Extensions (subject to time and validation)
 
-- Additional competition systems from the candidate set:Single Elimination, Double Elimination, Swiss, Round Robin / Box Leagues, and King of the Court / Ladder (TBD). 
-These are candidates, not a commitment to deliver every format. The rules and classification of King of the Court / Ladder will be determined during requirements analysis.
-- Push notifications and real-time updates.
-- Expanded statistics, visualizations, maps, and location-based discovery.
+- Additional competition systems from the candidate set: Single Elimination, Double Elimination, Round Robin / Box Leagues, and King of the Court / Ladder. These are candidates, not a commitment to deliver every format. The rules and classification of King of the Court / Ladder will be determined during requirements analysis.
+- Push notifications (in-app next-match information is part of the Should scope) and real-time updates.
+- Recording casual matches outside tournaments, and deciding after evaluation whether they affect ratings.
+- Expanded statistics, visualizations, maps, and court discovery.
 - More advanced tournament administration and organizer tools.
 
 ### 7.3 Out of Scope for the Initial Release
@@ -83,7 +86,9 @@ These are candidates, not a commitment to deliver every format. The rules and cl
 - In Doubles, confirmed premade teams remain intact; automatic pairing applies only to unpaired participants.
 - Doubles teams are formed before tournament play begins and remain fixed during that tournament under the initial rules.
 - A player must not occupy more than one team position in the same tournament.
-- Confirmed match results update the internal player rating exactly once; disputes and reversals need explicit handling.
+- A submitted result counts only after the opponent confirms it. If the opponent disputes it, the organizer resolves the dispute and the resolved result counts. An organizer cannot resolve a dispute in a match they played.
+- Confirmed match results update the internal player rating exactly once; corrections are recorded in an audit trail, and affected ratings are recalculated from the rating history.
+- In the first release, only tournament matches affect ratings.
 - A player's initial displayed self-assessment is not treated as a verified competitive level.
 - The method for rating doubles outcomes, initial rating uncertainty, and public-rating conversion remains subject to research and testing.
 
@@ -101,6 +106,6 @@ The project combines multiple interacting engineering problems: authorization ac
 
 ## 11. Validation and Scope Control
 
-The team will validate assumptions with potential users and the supervisor. A baseline implementation will be assessed through functional acceptance tests, integration checks, selected usability scenarios, and rating/matchmaking metrics defined in the Verification and Evaluation Plan. The exact competition system for the first implementation, database choice, algorithm, and implementation milestones will be finalized after a joint scope review.
+The team will validate assumptions with potential users and the supervisor. A baseline implementation will be assessed through functional acceptance tests, integration checks, selected usability scenarios, and rating/matchmaking metrics defined in the Verification and Evaluation Plan. After the joint scope review, the team selected the Swiss-style system as the first competition system, PostgreSQL as the database and Glicko-2 as the rating algorithm; the implementation milestones are described in `docs/project-management/project-milestones.md`. Rating parameters, the Flutter state-management library, the backend ORM and hosting remain to be decided in milestones 2 and 4.
 
 **Pre-defence note:** The October 24 milestone requires project analysis, architecture, prototype materials, documentation, and development planning; a complete application is not required at that stage.

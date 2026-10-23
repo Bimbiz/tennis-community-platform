@@ -25,9 +25,9 @@ Quotes are English translations. Timestamps (e.g. `P1 @0:45`) point to the trans
 ## 1. Summary of recurring findings
 
 1. **Not knowing an opponent's level is the main barrier** to finding people to play with (all 3).
-2. **There is no reliable, shared rating.** Existing ones are local, outdated or missing, and people misreport their own level (all 3).
+2. **There is no reliable, shared rating.** Existing ones are local, outdated or missing (all 3), and people misreport their own level (P1, P3).
 3. **Level is judged informally:** by watching, playing once, or asking a coach or organizer (all 3).
-4. **Everyone wants a visible rating and a way to find a suitable partner or opponent.** These were the top needs named for the app (all 3).
+4. **Everyone wants a visible rating and a way to find a suitable partner or opponent.** These were the top needs named for the app (all 3; P1's interest in search is indirect, through ratings).
 5. **Players want tournament results, brackets and their next opponent visible in one place** (P1, P3).
 6. **Doubles partners are picked from people players already know**, by observed skill (P1, P3).
 
@@ -42,7 +42,7 @@ Quotes are English translations. Timestamps (e.g. `P1 @0:45`) point to the trans
 | F3 | No shared, up-to-date rating exists | P1 @1:59 "the system is very old, almost never updated" · P2 @1:48 "no official rating… my judgment is purely subjective" · P3 Q4 "there was a level system, but I didn't have a rating" | Verified (3/3) | FR-02, FR-04 |
 | F4 | Level is judged informally: watching, playing, or asking a coach or organizer | P1 @1:16 organizers' ratings plus own judgment · P2 @1:48 "shots, power, accuracy, movement… after one match you can tell" · P3 Q3 "from my coach" | Verified (3/3) | FR-02, DD-03 |
 | F5 | Users want a visible rating that updates automatically | P1 @6:36 "just tracking people's ratings" (named as top need) · P2 @2:55 "a rating would be useful, especially with people I don't know" · P3 Q8 "have an Elo system" | Verified (3/3) | FR-01, FR-02 |
-| F6 | Finding a suitable partner or opponent is the main reason to use the app | P2 @6:53 "finding a suitable opponent without extra effort" · P3 Q9 "partner or opponent search… matters most" · P1 @6:36 ratings "would help find partners quickly" (indirect) | Verified (3/3) | FR-05, FR-06, FR-07 |
+| F6 | Finding a suitable partner or opponent is the main reason to use the app | P2 @6:53 "finding a suitable opponent without extra effort" · P3 Q9 "partner or opponent search… matters most" · P1 @6:36 ratings "would help find partners quickly" (indirect) | Verified (2/3 direct, P1 indirect) | FR-05, FR-06, FR-07 |
 | F7 | Tournament scores and next opponents get lost in WhatsApp/Telegram chats | P1 @2:45 "after every match you have to go back to the organizers and ask" · P1 @3:31 "hard to find in the chats who played whom" | Single-source (P1), partly contradicted by P3 (see C2) | FR-09, FR-10, DD-04 |
 | F8 | Players want to see results, brackets and upcoming opponents | P1 @5:20 "see what score they finished with and who I might play next" · P3 Q8 "put people into brackets" | Verified (2/3) | FR-09, FR-10, FR-11 |
 | F9 | Doubles partners are chosen from familiar players, by observed skill | P1 @4:38 "people I usually play with… pick a partner by eye" · P3 Q7 "people I've already played with" · P3 Q6 forming doubles teams is "the most inconvenient thing" | Verified (2/2 asked; P2 was not asked) | FR-08 |
@@ -116,6 +116,14 @@ Priority uses MoSCoW: **M**ust, **S**hould, **C**ould.
 | FR-13 | Tournaments can be split into divisions by level band | C | F14 | Verified (2/3), partial |
 | FR-14 | Players can find courts with free slots | C | F10, F11 | Single-source, relies on A6 |
 | FR-15 | Tournament registration takes one step | C | C1 | Contradicted, low priority |
+
+**Clarifications agreed in the consistency review (23 October 2026).** The wording and priorities above are unchanged; these notes say how the requirements are interpreted:
+
+- **FR-01:** the "numeric rating" shown to players is the NTRP-style level number (for example 3.5) with its band (for example Intermediate) and provisional status. The internal Glicko-2 value is used by the system and is not shown on player screens (see DD-02).
+- **FR-03:** the opponent confirms or disputes; a disputed result is resolved by the organizer and then counts once (FR-29, FR-41 in `functional-requirements-addition.md`).
+- **FR-10:** met inside the app (a next-match card and an in-app notification list). Push delivery through FCM/APNs is a Could item and is not required for FR-10.
+- **FR-12:** these are the essential profile fields. Account credentials (email and password) are specified separately in FR-34, which also requires accepting the privacy notice.
+- **DD-03:** not part of the first release. The starting level is self-assessed (FR-33); organizer or coach estimates are used only as an optional research baseline in the Verification and Evaluation Plan.
 
 ### Design decisions
 
