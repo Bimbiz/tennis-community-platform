@@ -37,7 +37,7 @@ Each risk has a person responsible for it. Timur works on the mobile app (Flutte
 | 13 | We lose code or data | Technical | 1 | 3 | 3 | Both |
 | 14 | Players or organizers manipulate ratings with fake or wrong results | Security / data integrity | 2 | 3 | **6** | Arlan |
 
-Risk 14 was added on 23 October 2026, after a consistency review of the project documents.
+Risk 14 was added on 23 October 2026, after a minor fixes before supervisor's review of the project documents.
 
 Risk matrix (numbers are risk IDs):
 

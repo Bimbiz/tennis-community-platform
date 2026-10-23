@@ -5,7 +5,7 @@
 **Educational program:** Software Engineering  
 **Team:** Timur Bizinskiy (SE-2412) — Mobile Development; Arlan Tulegenov (SE-2429) — Backend Development  
 **Academic supervisor:** Zhibek Sarsenova, Senior Lecturer  
-**Document status:** Draft v0.2 — updated after the consistency review of 23 October 2026; pending supervisor review  
+**Document status:** Draft v0.2 — updated after the minor fixes before supervisor's review of 23 October 2026; pending supervisor review  
 
 ## 1. Project Overview
 

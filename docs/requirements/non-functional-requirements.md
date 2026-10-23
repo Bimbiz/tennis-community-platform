@@ -1,7 +1,7 @@
 # Non-Functional Requirements
 
 **Project:** Amateur Tennis Community Platform  
-**Document status:** Draft v0.2 — updated after the consistency review of 23 October 2026 (NFR-09 raised to Must; NFR-19–NFR-22 added)  
+**Document status:** Draft v0.2 — updated after the minor fixes before supervisor's review of 23 October 2026 (NFR-09 raised to Must; NFR-19–NFR-22 added)  
 **Related task:** ATC-11  
 **Scope:** Initial mobile application and backend release
 
@@ -70,7 +70,7 @@ The numeric targets are **proposed acceptance thresholds**, not measured results
 - **Security and privacy:** Verify relevant rules through tests and inspection rather than claiming formal security certification or legal compliance that has not been assessed.
 - **Traceability:** Functional requirements describe the operations under test; these NFRs define the quality criteria to apply when verifying them.
 - **Open decisions:** Final deployment environment (hosting in Kazakhstan before real users join, see Risk 8), data-retention policy and service-availability target require separate team decisions before production deployment. Account deletion is now specified as FR-37. This draft does not claim any of these have been implemented.
-- **Priority change:** NFR-09 was raised from Should to Must in the consistency review, because the personal-data mitigation in Risk 8 depends on users accepting the privacy notice at sign-up.
+- **Priority change:** NFR-09 was raised from Should to Must in the minor fixes before supervisor's review, because the personal-data mitigation in Risk 8 depends on users accepting the privacy notice at sign-up.
 
 ## 9. Relationship to Core Functionality
 

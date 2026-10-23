@@ -37,7 +37,7 @@ A match result is submitted by one player and confirmed or disputed by the oppon
 
 ## Pending updates in Figma
 
-The current screens were made before the consistency review of 23 October 2026. They will be updated in milestone 2:
+The current screens were made before the minor fixes before supervisor's review of 23 October 2026. They will be updated in milestone 2:
 
 1. **Match Details (Player):** replace "Awaiting Organizer Approval" with "Waiting for your opponent to confirm", and show "Confirm" and "Dispute" buttons when the opponent opens the match.
 2. **Match Details (Organizer):** replace "Approve / Reject" with a dispute-resolution view (enter the corrected score or void the match) that appears only for disputed matches.

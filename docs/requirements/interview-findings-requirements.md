@@ -117,7 +117,7 @@ Priority uses MoSCoW: **M**ust, **S**hould, **C**ould.
 | FR-14 | Players can find courts with free slots | C | F10, F11 | Single-source, relies on A6 |
 | FR-15 | Tournament registration takes one step | C | C1 | Contradicted, low priority |
 
-**Clarifications agreed in the consistency review (23 October 2026).** The wording and priorities above are unchanged; these notes say how the requirements are interpreted:
+**Clarifications agreed in the minor fixes before supervisor's review (23 October 2026).** The wording and priorities above are unchanged; these notes say how the requirements are interpreted:
 
 - **FR-01:** the "numeric rating" shown to players is the NTRP-style level number (for example 3.5) with its band (for example Intermediate) and provisional status. The internal Glicko-2 value is used by the system and is not shown on player screens (see DD-02).
 - **FR-03:** the opponent confirms or disputes; a disputed result is resolved by the organizer and then counts once (FR-29, FR-41 in `functional-requirements-addition.md`).

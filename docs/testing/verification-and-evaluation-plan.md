@@ -2,7 +2,7 @@
 
 **Project:** Amateur Tennis Community Platform  
 **Task:** ATC-17  
-**Status:** Draft v0.2 — plan only; no evaluation results collected. Updated after the consistency review of 23 October 2026.
+**Status:** Draft v0.2 - plan only; no evaluation results collected. Updated after the minor fixes before supervisor's review of 23 October 2026.
 
 ## 1. Purpose and source documents
 

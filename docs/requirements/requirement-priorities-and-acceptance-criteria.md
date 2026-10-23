@@ -2,7 +2,7 @@
 
 **Project:** Amateur Tennis Community Platform  
 **Task:** ATC-12 - Define Requirement Priorities and Acceptance Criteria  
-**Status:** Draft v0.2 for team and supervisor review — updated after the consistency review of 23 October 2026  
+**Status:** Draft v0.2 for team and supervisor review — 23 October 2026  
 **Coverage:** FR-01–FR-44 and NFR-01–NFR-22
 
 ## Purpose and source of truth
@@ -15,8 +15,6 @@ This matrix consolidates **existing** requirement IDs, priorities, and verifiabl
 - `Usecase Diagram.md`: UC identifiers; `project-proposal.md`: scope baseline.
 
 The wording of the authoritative requirement is maintained in its source file; the rows below describe **how compliance will be verified**. Reviewers should use the ID to locate the full requirement. No requirement is marked implemented or tested merely because its acceptance check has been defined.
-
-These requirement documents are the reference for priorities. Other project documents (proposal, risk register, milestones, diagrams) follow them; where they disagreed, they were aligned in the consistency review.
 
 ## Priority scheme
 
@@ -131,7 +129,7 @@ Priorities are copied from the source documents. Any change must be approved by 
 
 ## E. Consistency issues and their resolution
 
-All items below were open in v0.1 and were resolved in the consistency review of 23 October 2026.
+All items below were open in v0.1 and were resolved in the minor fixes before supervisor's review of 23 October 2026.
 
 1. **Registration and contact details:** FR-12 lists the essential profile fields (name, area, self-estimated level); FR-34 adds the account credentials (email and password) and privacy-notice consent required by UC-01. The registration screen must ask for exactly these fields.
 2. **Notifications:** FR-10 stays Should and is met in the app (next-match card and in-app notification list). Push delivery through FCM/APNs is Could, consistent with the risk register and the context and component diagrams, where push services are marked as planned.
@@ -146,7 +144,7 @@ All items below were open in v0.1 and were resolved in the consistency review of
 | Date | Change |
 |---|---|
 | 18 October 2026 | v0.1: matrix for FR-01–FR-33 and NFR-01–NFR-18. |
-| 23 October 2026 | v0.2 (consistency review): Swiss-style selected as first format (FR-25); dispute rule decided (FR-29); FR-34–FR-44 and NFR-19–NFR-22 added; **NFR-09 raised from Should to Must** because the personal-data mitigation (Risk 8) depends on consent at sign-up; acceptance checks of FR-01, FR-03, FR-10, FR-12, FR-17, FR-27, FR-28 clarified; section E resolved. No other priority changed. |
+| 23 October 2026 | v0.2: Swiss-style selected as first format (FR-25); dispute rule decided (FR-29); FR-34–FR-44 and NFR-19–NFR-22 added; **NFR-09 raised from Should to Must** because the personal-data mitigation (Risk 8) depends on consent at sign-up; acceptance checks of FR-01, FR-03, FR-10, FR-12, FR-17, FR-27, FR-28 clarified; section E resolved. No other priority changed. |
 
 ## Completion and evidence procedure
 

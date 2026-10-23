@@ -2,14 +2,14 @@
 
 **Project:** Amateur Tennis Community Platform  
 **Task:** ATC-10 — Define Functional Requirements  
-**Status:** Draft v0.2 — updated after the consistency review of 23 October 2026  
+**Status:** Draft v0.2 — updated after the minor fixes before supervisor's review of 23 October 2026  
 **Scope:** Additional requirements, FR-16–FR-44
 
 ## Purpose and numbering
 
 This document **supplements**, rather than replaces, the fifteen functional requirements (FR-01–FR-15) in `interview-findings-requirements.md`. Those original IDs and their wording are preserved. The requirements below cover essential user and organizer workflows that were not stated explicitly in the interview-derived list. Together, the two documents form the current draft functional-requirements baseline.
 
-New IDs are only ever appended. FR-34–FR-44 were added during the consistency review to close gaps in account management, result integrity and tournament administration.
+New IDs are only ever appended. FR-34–FR-44 were added during the minor fixes before supervisor's review to close gaps in account management, result integrity and tournament administration.
 
 **Priorities:** M = Must have for the agreed core workflow; S = Should have; C = Could have.  
 **Traceability:** UC-XX refers to `Usecase Diagram.md`; FXX refers to findings in `interview-findings-requirements.md`; "Risk N" refers to `project-risks-and-dependencies.md`. A dash means the item is primarily derived from the Project Proposal / system use cases rather than direct interview evidence.
@@ -37,7 +37,7 @@ New IDs are only ever appended. FR-34–FR-44 were added during the consistency 
 | **FR-32** | The system shall allow users to browse published tournaments and view the relevant tournament details before registering. | M | UC-04, UC-05 | A registered user can view available tournaments and their dates, participation format, and registration status. |
 | **FR-33** | The system shall distinguish a user's initial self-assessed level from the rating calculated from confirmed match results. | M | UC-03, UC-12; FR-01, FR-02; F2, F4 | A new player's starting estimate is identifiable as self-assessed; later match-based ratings are presented as calculated values. |
 
-## Requirements added in the consistency review (FR-34–FR-44)
+## Requirements added in the minor fixes before supervisor's review (FR-34–FR-44)
 
 | ID | Requirement | Priority | Source / use case | Acceptance check |
 |---|---|---|---|---|
@@ -55,15 +55,15 @@ New IDs are only ever appended. FR-34–FR-44 were added during the consistency 
 
 ## Existing requirements retained without renumbering
 
-The original **FR-01–FR-15** already address rating display and updates, confirmation of results, provisional ratings, opponent/partner search, availability and distance filters, doubles suggestions, tournament information, notifications, match history, minimal onboarding, level divisions, court availability, and streamlined registration. These remain maintained in `interview-findings-requirements.md` and **are not duplicated or redefined here**. Clarifications of FR-01, FR-10 and FR-12 agreed in the consistency review are recorded in that document.
+The original **FR-01–FR-15** already address rating display and updates, confirmation of results, provisional ratings, opponent/partner search, availability and distance filters, doubles suggestions, tournament information, notifications, match history, minimal onboarding, level divisions, court availability, and streamlined registration. These remain maintained in `interview-findings-requirements.md` and **are not duplicated or redefined here**. Clarifications of FR-01, FR-10 and FR-12 agreed in the minor fixes before supervisor's review are recorded in that document.
 
 ## Decisions and constraints
 
-- **First tournament system:** Swiss-style (decided in the consistency review, 23 October 2026). FR-25 specifies its rules. Single and double elimination, round robin / box leagues and King of the Court / ladder remain possible later extensions (Project Proposal §7.2).
+- **First tournament system:** Swiss-style (decided in the minor fixes before supervisor's review, 23 October 2026). FR-25 specifies its rules. Single and double elimination, round robin / box leagues and King of the Court / ladder remain possible later extensions (Project Proposal §7.2).
 - **Rating algorithm:** Glicko-2 was selected (see `docs/comparisons/technology-alternatives.md`), with plain Elo implemented behind the same interface as a fallback and as an evaluation baseline. The rating period handling, initial values, doubles aggregation and displayed-level mapping are defined in milestone 4. This document still specifies observable behaviour rather than formulas.
 - **Disputed results:** The opponent confirms or disputes a result (FR-03, FR-28). The organizer resolves disputes (FR-29); a resolved score counts once, a void match does not count, and an organizer cannot resolve a dispute in a match they played (FR-41).
 - **Which matches affect ratings:** In the first release, only tournament matches. Casual matches are a Could extension (FR-43).
-- **Priorities:** Existing FR-01–FR-15 priorities remain exactly as recorded. Where other project documents disagreed, they were aligned to the requirement documents in the consistency review.
+- **Priorities:** Existing FR-01–FR-15 priorities remain exactly as recorded. Where other project documents disagreed, they were aligned to the requirement documents in the minor fixes before supervisor's review.
 - **User evidence:** Interviews support rating, matchmaking, and viewing tournament information, but no tournament organizers were interviewed. Organizer requirements therefore originate mainly from the project scope and use-case diagram and still require validation.
 - **External services:** Push delivery (FCM/APNs) is a Could item; FR-10 (Should) is met in the app through a next-match card and an in-app notification list, so it does not depend on push. Email verification and password reset (FR-35, FR-36, both Should) depend on the email service; until it is available, test accounts are verified manually.
 
