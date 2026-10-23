@@ -35,13 +35,16 @@ Each risk has a person responsible for it. Timur works on the mobile app (Flutte
 | 11 | Each part of the system has only one developer | Schedule | 2 | 3 | **6** | Both |
 | 12 | Writing the thesis takes time away from development | Schedule | 2 | 2 | 4 | Both |
 | 13 | We lose code or data | Technical | 1 | 3 | 3 | Both |
+| 14 | Players or organizers manipulate ratings with fake or wrong results | Security / data integrity | 2 | 3 | **6** | Arlan |
+
+Risk 14 was added on 23 October 2026, after a minor fixes before supervisor's review of the project documents.
 
 Risk matrix (numbers are risk IDs):
 
 | Probability \ Impact | Low (1) | Medium (2) | High (3) |
 |---|---|---|---|
 | **High (3)** | | 7 | 10 |
-| **Medium (2)** | | 4, 5, 6, 9, 12 | 1, 2, 3, 8, 11 |
+| **Medium (2)** | | 4, 5, 6, 9, 12 | 1, 2, 3, 8, 11, 14 |
 | **Low (1)** | | | 13 |
 
 We think the biggest risk is the scope (risk 10). Most of the other major risks are connected to the parts that make our app different from a normal tournament app: the rating, the pairings and the data we need to test them.
@@ -60,9 +63,9 @@ We work in parallel: Timur builds the app and Arlan builds the backend. If one o
 
 We chose Glicko-2, but some details are not decided yet: how long a rating period is, what the starting rating is, how to count a doubles team, and how the internal rating turns into the NTRP-style level that players see. When a player has only a few matches, the rating can jump a lot. If the numbers look wrong, players won't trust them, and it will be hard to defend the main feature of the project.
 
-**Mitigation:** the rating is a separate module with its own unit tests. One of the tests repeats the example from Glickman's Glicko-2 paper, where a player rated 1500 ends up at about 1464 after one win and two losses [1]. We will also simulate seasons with made-up players whose real strength we know, and check that the ratings put them in the right order (this is connected to risk 7). Players with an uncertain rating are shown as "provisional".
+**Mitigation:** the rating is a separate module with its own unit tests. One of the tests repeats the example from Glickman's Glicko-2 paper, where a player rated 1500 ends up at about 1464 after one win and two losses [1]. We plan to process each confirmed match as its own rating period and to increase the rating deviation with the time since a player's last match. Glickman writes that Glicko-2 works best with an average of at least 10–15 games per player in a rating period [1], so we will check this choice in the simulation. We will simulate seasons with made-up players whose real strength we know, and check that the ratings put them in the right order (this is connected to risk 7). Players with an uncertain rating are shown as "provisional".
 
-**If it happens anyway:** we switch to normal Elo. It is easier to explain and tune, and because the rating is a separate module, the other parts of the system don't need to change.
+**If it happens anyway:** we switch to normal Elo. It is easier to explain and tune, and we implement it anyway as the comparison baseline. Because the rating is a separate module, the other parts of the system don't need to change.
 
 ### 3. Swiss-style pairings and automatic doubles pairs are harder than we expect (score 6)
 
@@ -84,7 +87,7 @@ Our app is new, so there is no match history yet. The interviews gave us opinion
 
 The app stores names, contacts, match history and maybe an approximate location for search. In Kazakhstan, the Law on Personal Data (No. 94-V) says that personal data has to be stored on the territory of the country. In 2026 some laws changed the definition of personal data, and there is a draft decree that could relax the storage rule, but it is not adopted yet [6]. So the rules are changing, and if we choose hosting only by price, a test with real users could break the law. A data leak would also be a serious problem.
 
-**Mitigation:** we only collect what the app really needs, and location is optional. Users agree to a short privacy notice when they sign up. Passwords are hashed, every request is checked with a JWT token, and organizers can only see their own tournaments. Until we choose hosting in Kazakhstan, we use only test accounts and generated data. We are not lawyers, so we will also ask our supervisor before inviting real users.
+**Mitigation:** we only collect what the app really needs, and location is optional and never shown exactly (distances are shown in ranges). Users have to accept a short privacy notice when they sign up (NFR-09, a "must have"), and they can delete their account (FR-37). Passwords are hashed, every request after sign-in is checked with a short-lived JWT token that is revoked on sign-out, tokens on the phone are kept in the system's secure storage, organizers can only manage their own tournaments, and contact details are not shown to other players by default. Until we choose hosting in Kazakhstan, we use only test accounts and generated data. We are not lawyers, so we will also ask our supervisor before inviting real users. Before the interviews or any user test are used in the thesis, we also check that each participant's consent to the recording and to anonymised use of their answers is written down.
 
 **If it happens anyway:** we run the test with a small group of people who agreed to it, on a server located in Kazakhstan, and show only generated data at the defence.
 
@@ -92,13 +95,13 @@ The app stores names, contacts, match history and maybe an approximate location 
 
 The project includes accounts and profiles, singles and doubles tournaments, solo and team registration, automatic doubles pairs, scheduling, result confirmation, rating, player levels, statistics and matchmaking. This is a lot for two people who also have to write a thesis.
 
-**Mitigation:** we use the MoSCoW method to decide what is most important:
+**Mitigation:** we use the MoSCoW priorities from our requirement documents (see *Requirements Priorities and Acceptance Criteria*):
 
-- **Must have:** accounts, creating tournaments, singles and doubles registration, Swiss-style rounds, submitting and confirming results, rating updates.
-- **Should have:** opponent and partner search, automatic doubles pairs, statistics and match history.
-- **Could have:** notifications, offline cache, court search.
+- **Must have:** accounts (with privacy consent and account deletion), creating tournaments, singles and doubles registration (alone or as a team), automatic doubles pairs, Swiss-style rounds, the schedule and final standings, submitting, confirming and disputing results (with the audit trail), rating updates, and opponent and partner search by level.
+- **Should have:** match history and statistics, provisional ratings, availability and distance filters, in-app next-match notifications, past doubles partners, password reset and email verification.
+- **Could have:** push notifications, offline cache, court search, level divisions, casual matches outside tournaments.
 
-We work in two-week milestones in YouTrack and show each other a working demo at the end of each one. We try to finish features one at a time, so that every feature works all the way from the app to the database. We stop adding new features three or four weeks before the defence and use that time for testing, fixing bugs and writing.
+We work in two-week sprints in YouTrack and show each other a working demo at the end of each one. We try to finish features one at a time, so that every feature works all the way from the app to the database. We stop adding new features three or four weeks before the defence and use that time for testing, fixing bugs and writing.
 
 **If it happens anyway:** we remove "could have" features first and then "should have" features, so that we always have a working version to show.
 
@@ -110,11 +113,19 @@ Timur is the only one working on the app, and Arlan is the only one working on t
 
 **If it happens anyway:** the other person continues with a simpler version of the work, and we cut scope as described in risk 10.
 
+### 14. Players or organizers manipulate ratings with fake or wrong results (score 6)
+
+A trustworthy rating is the main reason to use our app, but the rules make some abuse possible. Any user can create a tournament and becomes its organizer, an organizer can also play in their own tournament, and new accounts are easy to create while email verification is only a "should have". Two friends could also agree on fake results and confirm each other's scores. If this happens, the ratings stop meaning anything.
+
+**Mitigation:** a result only counts after the opponent confirms it, and a disputed result only after the organizer resolves it. Organizers can't submit or confirm results for other players, and they can't resolve a dispute in a match they played (FR-41). Every change of a result and every rating change is saved with who made it and when, and the players involved can see it (FR-42). In the first release only tournament matches change ratings. When email verification is ready, only verified accounts can publish tournaments (FR-36). In the simulation (risk 7) we also add some fake results and check how much they can move the ratings.
+
+**If it happens anyway:** we count only tournaments from organizers we know (for example our pilot club) for ratings, and we describe the limitation in the thesis.
+
 ## Other risks
 
-**4. Result confirmation and rating updates go wrong (score 4).** Two players might enter different scores, someone might press "confirm" twice, or a dispute might be solved after other matches have already changed the ratings. To avoid this, the rating changes in the same database transaction as the result confirmation, and pressing "confirm" twice doesn't count the result twice. Disputed results don't count until the organizer solves the dispute. We also save the rating history, so ratings can be recalculated if an old result is corrected.
+**4. Result confirmation and rating updates go wrong (score 4).** Two players might enter different scores, someone might press "confirm" twice, or a dispute might be solved after other matches have already changed the ratings. To avoid this, the rating changes in the same database transaction as the result confirmation, and pressing "confirm" twice doesn't count the result twice. A disputed result doesn't count until the organizer resolves it; the resolved result then counts once, and an organizer can't resolve a dispute in a match they played. We also save the rating history, so if an old result is corrected, the affected ratings can be recalculated by replaying the confirmed results in order.
 
-**5. Setting up push notifications and the app stores takes a long time (score 4).** To build the iOS app we need a Mac with Xcode. Push notifications and sending the iOS app to testers need the paid Apple Developer Program, which costs 99 USD per year [2][3]. A free account doesn't support push notifications [4]. On Google Play, new personal developer accounts (created after 13 November 2023) have to run a closed test with at least 12 testers for 14 days in a row before publishing [5]. Because of this, we will create the accounts early. Notifications are only a "could have" feature, and the "my next match" screen in the app gives the same information. At the defence we can show the app on Android (installed directly from an APK file) and on an emulator, so we don't need the stores.
+**5. Setting up push notifications and the app stores takes a long time (score 4).** To build the iOS app we need a Mac with Xcode. Push notifications and sending the iOS app to testers need the paid Apple Developer Program, which costs 99 USD per year [2][3]. A free account doesn't support push notifications [4]. On Google Play, new personal developer accounts (created after 13 November 2023) have to run a closed test with at least 12 testers for 14 days in a row before publishing [5]. Because of this, we will create the accounts early. Push notifications are only a "could have" feature. The next-opponent information that FR-10 asks for (a "should have") is shown inside the app, on a "my next match" card and in an in-app notification list, so it doesn't depend on push. At the defence we can show the app on Android (installed directly from an APK file) and on an emulator, so we don't need the stores.
 
 **6. Some technology decisions are still open (score 4).** We still need to choose the Flutter state management library, the ORM and migration tool for the backend, and hosting. If we choose late, we may have to rewrite code. We will set a deadline for each decision and try each option on a small real example first. We will also lock library versions, so updates don't break the build unexpectedly.
 

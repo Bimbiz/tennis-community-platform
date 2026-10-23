@@ -12,7 +12,7 @@ We chose five systems: three international apps, the official ITF rating, and on
 
 **Global Tennis Network (GTN).** GTN is an online community for finding tennis partners. Members can search for players near them and get a level calculated from the matches they play [7][8]. It also supports ladders, leagues and tournaments, and has a forum and a directory of courts. Some features, such as private messaging, are only for paying members [7][8]. Reported membership is between 110,000 and 149,000 players, depending on the source [7][8].
 
-**ITF World Tennis Number (WTN).** WTN is the International Tennis Federation's official rating, on a scale from 40 to 1 [9]. Players get it through their national federation, and several countries show separate singles and doubles numbers [10]. From August 2026, the UK version also takes game scores within each set into account and adjusts the ratings of players returning after a break [9]. Kazakhstan's tennis federation already shows WTN values in its ratings section [10]. WTN is only a rating, though. The sources describe player search and head-to-head comparisons, but no matchmaking, community or tournament features [10].
+**ITF World Tennis Number (WTN).** WTN is the International Tennis Federation's official rating, on a scale from 40 to 1 [9]. Players get it through their national federation, and several countries show separate singles and doubles numbers [10]. From August 2026, the UK version also takes game scores within each set into account and adjusts the ratings of players returning after a break [9]. Kazakhstan's tennis federation already shows WTN values in its ratings section [13]. WTN is only a rating, though. The sources describe player search and head-to-head comparisons, but no matchmaking, community or tournament features [10].
 
 **Tennis League TS (TLTS).** TLTS organizes amateur tournaments in Kazakhstan. It was founded in November 2022 and had over 200 members by 2024 [11]. It runs a series of doubles tournaments where players collect points towards a season final, in categories such as Masters and Grand Masters [11]. The 2026 season had seven TS CUP rounds and a final on 25 September [12]. Players sign up through a form on the website [11]. The site shows a ratings table but doesn't explain how it is calculated, and there is no mobile app or partner search [12]. Its members are described mostly as businesspeople and managers [11].
 
@@ -23,12 +23,12 @@ All five systems are compared on the same eight criteria, with our planned app a
 | Criterion | UTR Sports | Playtomic | GTN | WTN | TLTS | Our app (planned) |
 |---|---|---|---|---|---|---|
 | Rating based on match results | Yes, 1.00–16.50 scale [2] | Yes, after a starting questionnaire [5] | Yes, method not published [8] | Yes, 40–1 scale [9] | Points table, method not published [11][12] | Yes |
-| How trustworthy the rating is | Verified and self-reported results kept apart [2] | Reliability score for each player [5] | Not found | Confidence level in some countries, inactivity adjustment from 2026 [9][10] | Not found | Results confirmed by the opponent. New and inactive players marked as provisional. |
-| Finding players by level | Yes [1] | Open matches with a level range [6] | Search nearby players by level [7] | No [10] | No [12] | Yes, by level, distance and availability |
-| Doubles | Separate doubles rating [4] | Partner's level is counted [5] | Not found | Separate doubles number [10] | Doubles tournaments [11] | Past partners shown, balanced pairs suggested |
-| Tournaments and leagues | Yes, run by registered event providers [1][3] | Not found | Ladders, leagues and tournaments [8] | No | Its own tournament series [11] | Brackets, results and notifications for any community organizer |
-| Community and communication | Clubs, groups, meetups [1][3] | Not found | Forum, meetups, messaging for paying members [7][8] | No | Website only [12] | Links that can be shared into existing group chats |
-| Used in Kazakhstan | Not found | Not found | Not found | Shown by the national federation [10] | Yes, based in Almaty [12] | Launch through local clubs |
+| How trustworthy the rating is | Verified and self-reported results kept apart [2] | Reliability score for each player [5] | Not found | Confidence level in some countries, inactivity adjustment from 2026 [9][10] | Not found | Results confirmed by the opponent, disputes resolved by the organizer, every change logged. New and inactive players marked as provisional. |
+| Finding players by level | Yes [1] | Open matches with a level range [6] | Search nearby players by level [7] | No [10] | No [12] | Yes, by level; distance and availability filters planned |
+| Doubles | Separate doubles rating [4] | Partner's level is counted [5] | Not found | Separate doubles number [10] | Doubles tournaments [11] | Automatic balanced pairs for solo registrants; past partners shown (planned) |
+| Tournaments and leagues | Yes, run by registered event providers [1][3] | Not found | Ladders, leagues and tournaments [8] | No | Its own tournament series [11] | Swiss-style draws, schedules and results for any community organizer, with next-match information in the app |
+| Community and communication | Clubs, groups, meetups [1][3] | Not found | Forum, meetups, messaging for paying members [7][8] | No | Website only [12] | Tournament links that can be shared into existing group chats (planned) |
+| Used in Kazakhstan | Not found | Not found | Not found | Shown by the national federation [13] | Yes, based in Almaty [12] | Launch through local clubs |
 | Cost for players | Free, with a paid tier [3] | Pay per court booking [6] | Free, with a paid tier [8] | Depends on the country [9][10] | Not published | Not decided yet |
 
 ## What the comparison shows
@@ -50,7 +50,7 @@ So the case for our app rests on four things:
 - It combines ratings, finding players and simple tournament tools in one place, for local amateur communities.
 - It launches through existing clubs and groups, so each area has enough active players from the start.
 - It gives informal organizers a simple way to publish brackets and results instead of posting them in chats.
-- Ratings come from everyday community matches, confirmed by both players, not only from official events.
+- Ratings come from community-run tournaments, with every result confirmed by the opponent, not only from official events. Casual matches outside tournaments may be added later.
 
 ## Differences from our app and what we can learn
 
@@ -82,3 +82,4 @@ This comparison is based on public information only. We didn't install the apps,
 10. ITF, *World Tennis Number: how do you get yours?* (30 Aug 2022): https://www.itftennis.com/en/news-and-media/articles/itf-world-tennis-number-how-do-you-get-yours
 11. Kapital.kz, *Tennis League TS membership passes 200 players* (2024): https://kapital.kz/lifestyle/127182/kolichestvo-sport-smenov-tennisnoy-ligi-ts-prevysilo-200-chelovek.html
 12. Tennis League TS, official website: https://tlts.kz
+13. Kazakhstan Tennis Federation, official website (ratings section): https://ktf.kz

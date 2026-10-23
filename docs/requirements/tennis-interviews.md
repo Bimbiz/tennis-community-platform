@@ -77,7 +77,7 @@ Three interviews on how amateur players find partners, judge skill levels and ta
 > *EN: Just tracking people's ratings. That would help you find partners quickly, and so on.*
 
 **[6:49] (speaker unclear):** Можете отключить?
-> *EN: You can turn it off.*
+> *EN: Can you turn it off?*
 
 ---
 
